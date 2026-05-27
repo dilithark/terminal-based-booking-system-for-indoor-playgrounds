@@ -89,3 +89,5 @@ void monthlyReport();
 void bookingStatistics();
 void adminLogin();
 void systemSummary();
+
+/*meke thiyen names tika use krl hadamu ethkota okkoma ekathu krnna giyma lesi...*/

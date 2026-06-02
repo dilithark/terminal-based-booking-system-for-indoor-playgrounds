@@ -87,7 +87,7 @@ void systemSummary();
 // ============================
 
 int main() {
-    // Pre-populate two default courts
+   
     courts[0].courtNo = 1;
     strcpy(courts[0].courtName, "Court A");
     strcpy(courts[0].status, "Available");
@@ -99,7 +99,7 @@ int main() {
     int choice;
 
     do {
-        // FIX: removed duplicate and conflicting menu numbers; each option now unique
+        
         printf("\n=========================================================\n");
         printf("      INDOOR BADMINTON COURT RESERVATION SYSTEM          \n");
         printf("=========================================================\n");
@@ -115,7 +115,6 @@ int main() {
         printf("Enter Choice : ");
         scanf("%d", &choice);
 
-        // FIX: all previously unreachable options now wired up
         if      (choice == 1)  registerCustomer();
         else if (choice == 2)  customerLogin();
         else if (choice == 3)  updateCustomer();
@@ -175,11 +174,9 @@ int customerLogin() {
 
     if (strlen(phoneN) == 10 && strlen(password) < 20) {
         for (int i = 0; i < customerCount; i++) {
-            if (strcmp(customers[i].phone, phoneN) == 0 &&
-                strcmp(customers[i].password, password) == 0) {
+            if (strcmp(customers[i].phone, phoneN) == 0 && strcmp(customers[i].password, password) == 0) {
                 printf("Login Successful!\n");
                 printf("Welcome %s\n", customers[i].name);
-                
                 do{
                     printf("---------------------------------------------------------\n");
                     printf(" 1.  Display Courts\n");
@@ -187,11 +184,9 @@ int customerLogin() {
                     printf(" 3.  Check Available Courts\n");
                     printf(" 4.  Book Court\n");
                     printf(" 5.  Cancel Booking\n");
-                    printf(" 6.  Update Court\n");
-                    printf(" 7.  Add Court\n");
                     printf("---------------------------------------------------------\n");
-                    printf(" 8.  Equipment Rental\n");
-                    printf(" 9.  Return Equipment\n");
+                    printf(" 6.  Equipment Rental\n");
+                    printf(" 7.  Return Equipment\n");
                     printf(" 0.  Log Out\n");
 
                     printf("Enter Choice : ");
@@ -201,23 +196,19 @@ int customerLogin() {
                    else if (choice == 2)  searchCourt();
                    else if (choice == 3)  availableCourts();
                    else if (choice == 4)  createBooking();
-                   else if (choice == 5) cancelBooking();
-                   else if (choice == 6) updateCourt();
-                   else if (choice == 7) addCourt();
-                   else if (choice == 8) { displayEquipment(); rentEquipment(); }
-                   else if (choice == 9) returnEquipment();
+                   else if (choice == 5)  cancelBooking();
+                   else if (choice == 6) { displayEquipment(); rentEquipment(); }
+                   else if (choice == 7) returnEquipment();
 
                 } while (choice!=0);
                 
-                return i;
+                return 0;
             }
         }
         printf("Invalid Login!\n");
     } else {
         printf("Invalid Login Details!\n");
     }
-
-    return -1;
 }
 
 void updateCustomer() {
@@ -291,10 +282,10 @@ void searchCustomer() {
         scanf("%d", &id);
 
         for (i = 0; i < customerCount; i++) {
-            if (customers[i].customerID == id) {   // FIX: int comparison, not strcmp
+            if (customers[i].customerID == id) {   
                 printf("Customer Found\n");
                 printf("Name     : %s\n", customers[i].name);
-                printf("Phone No : %s\n", customers[i].phone);  // FIX: %s not %d
+                printf("Phone No : %s\n", customers[i].phone);  
                 return;
             }
         }
@@ -335,38 +326,63 @@ void adminLogin() {
         printf(" 6. Booking Statistics\n");
         printf(" 7. Monthly Report\n");
         printf(" 8. System Summary\n");
-        printf(" 9. Add Court\n");         // FIX: previously unreachable functions now in admin panel
+        printf(" 9. Add Court\n");         
         printf("10. Update Court Status\n");
         printf("11. Add Equipment\n");
-        printf("12. Return Equipment\n");
         printf(" 0. Logout\n");
         printf("Enter Choice : ");
         scanf("%d", &choice);
 
-        if      (choice == 1)  displayCustomers();
-        else if (choice == 2)  displayBookings();
-        else if (choice == 3)  displayEquipment();
-        else if (choice == 4)  searchBooking();
-        else if (choice == 5)  dailyReport();
-        else if (choice == 6)  bookingStatistics();
-        else if (choice == 7)  monthlyReport();
-        else if (choice == 8)  systemSummary();
-        else if (choice == 9)  addCourt();
-        else if (choice == 10) updateCourt();
-        else if (choice == 11) addEquipment();
-        else if (choice == 12) returnEquipment();
-        else if (choice == 0)  printf("Logged Out.\n");
-        else                   printf("Invalid Input\n");
+        if      (choice == 1)  
+        displayCustomers();
+
+        else if (choice == 2)  
+        displayBookings();
+
+        else if (choice == 3)  
+        displayEquipment();
+
+        else if (choice == 4)  
+        searchBooking();
+
+        else if (choice == 5)  
+        dailyReport();
+
+        else if (choice == 6)  
+        bookingStatistics();
+        
+        else if (choice == 7)  
+        monthlyReport();
+
+        else if (choice == 8)  
+        systemSummary();
+
+        else if (choice == 9)  
+        addCourt();
+
+        else if (choice == 10) 
+        updateCourt();
+
+        else if (choice == 11) 
+        addEquipment();
+
+        else if (choice == 0)  
+        printf("Logged Out.\n");
+
+        else                   
+        printf("Invalid Input\n");
 
     } while (choice != 0);
 }
 
 void dailyReport() {
     printf("\n========== DAILY REPORT ==========\n");
+
     printf("Total Customers       : %d\n", customerCount);
     printf("Total Bookings        : %d\n", bookingCount);
     printf("Total Equipment Types : %d\n", equipmentCount);
     printf("\n--- Available Slots ---\n");
+
     availableCourts();
 }
 
@@ -399,10 +415,24 @@ void bookingStatistics() {
         if (bookings[i].courtNo == 2) court2Count++;
 
         switch (bookings[i].timeSlot) {
-            case 1: slot1++; break;
-            case 2: slot2++; break;
-            case 3: slot3++; break;
-            case 4: slot4++; break;
+            case 1: 
+            slot1++; 
+            break;
+
+            case 2: 
+            slot2++; 
+            break;
+
+            case 3: 
+            slot3++; 
+            break;
+
+            case 4: 
+            slot4++; 
+            break;
+
+            default:
+            printf("Invalid choice");
         }
     }
 

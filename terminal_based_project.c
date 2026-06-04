@@ -3,10 +3,6 @@
 
 #define MAX_BOOKINGS 500
 
-// ============================
-// STRUCTURES
-// ============================
-
 struct Customer {
     int customerID;
     char name[50];
@@ -34,10 +30,6 @@ struct Equipment {
     int quantity;
 };
 
-// ============================
-// GLOBAL ARRAYS
-// ============================
-
 struct Customer  customers[200];
 struct Court     courts[50];
 struct Booking   bookings[MAX_BOOKINGS];
@@ -60,7 +52,7 @@ void displayCustomers();
 
 void addCourt();
 void displayCourts();
-void updateCourt();          // FIX: was declared as updateCourtStatus() but defined as updateCourt()
+void updateCourt();          
 void searchCourt();
 void availableCourts();
 
@@ -109,7 +101,7 @@ int main() {
         printf(" 4.  Search Customer\n");
         printf(" 5.  Display Customers\n");
         printf("---------------------------------------------------------\n");
-        printf("14.  Admin Panel\n");
+        printf("6.  Admin Panel\n");
         printf(" 0.  Exit\n");
         printf("=========================================================\n");
         printf("Enter Choice : ");
@@ -120,7 +112,7 @@ int main() {
         else if (choice == 3)  updateCustomer();
         else if (choice == 4)  searchCustomer();
         else if (choice == 5)  displayCustomers();
-        else if (choice == 14) adminLogin();
+        else if (choice == 6) adminLogin();
         else if (choice == 0)  printf("Thank You For Using The System!\n");
         else                   printf("Invalid Choice!\n");
 
@@ -451,8 +443,10 @@ void bookingStatistics() {
 
     if (court1Count > court2Count)
         printf("\nMost Popular Court : Court 1\n");
+
     else if (court2Count > court1Count)
         printf("\nMost Popular Court : Court 2\n");
+
     else
         printf("\nBoth Courts Are Equally Popular\n");
 }
@@ -487,8 +481,10 @@ void monthlyReport() {
 
     if (court1Bookings > court2Bookings)
         printf("\nMost Popular Court : Court 1\n");
+
     else if (court2Bookings > court1Bookings)
         printf("\nMost Popular Court : Court 2\n");
+
     else
         printf("\nBoth Courts Are Equally Popular\n");
 }
@@ -577,18 +573,16 @@ void addCourt() {
     printf("Court Added Successfully!\n");
 }
 
-// FIX: renamed from updateCourtStatus() to match the definition used everywhere;
-//      replaced undefined viewCourts() call with displayCourts()
 void updateCourt() {
     int id;
     printf("\n--- UPDATE COURT STATUS ---\n");
-    displayCourts();  // FIX: was viewCourts() which does not exist
+    displayCourts();  
 
-    printf("\nEnter Court ID: ");
+    printf("\nEnter Court Number: ");
     scanf("%d", &id);
 
     if (id < 1 || id > courtCount) {
-        printf("Invalid Court ID!\n");
+        printf("Invalid Court Number!\n");
         return;
     }
 
@@ -621,10 +615,10 @@ int checkAvailability(int courtNo, char date[], int timeSlot) {
         if (bookings[i].courtNo == courtNo &&
             strcmp(bookings[i].bookingDate, date) == 0 &&
             bookings[i].timeSlot == timeSlot) {
-            return 0; // Not available
+            return 0; 
         }
     }
-    return 1; // Available
+    return 1; 
 }
 
 void createBooking() {
@@ -643,7 +637,7 @@ void createBooking() {
     printf("Enter Court Number (1-%d)  : ", courtCount);
     scanf("%d", &courtNo);
 
-    if (courtNo < 1 || courtNo > courtCount) {  // FIX: was courtNo <= 1
+    if (courtNo < 1 || courtNo > courtCount) {  
         printf("Invalid Court Number!\n");
         return;
     }
@@ -728,8 +722,8 @@ void searchBooking() {
             printf("Booking Found\n");
             printf("Court No  : %d\n", bookings[i].courtNo);
             printf("Date      : %s\n", bookings[i].bookingDate);
-            printf("Time Slot : %d\n", bookings[i].timeSlot);  // FIX: was %s
-            return;  // FIX: missing return caused "Not Found" to also print
+            printf("Time Slot : %d\n", bookings[i].timeSlot);  
+            return;  
         }
     }
     printf("Booking Not Found\n");

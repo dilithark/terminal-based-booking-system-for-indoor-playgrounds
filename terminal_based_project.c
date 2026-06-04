@@ -129,13 +129,13 @@ void registerCustomer() {
     printf("\n--- Customer Registration ---\n");
 
     printf("Enter Customer Name : ");
-    scanf("%s", customers[customerCount].name);
+    scanf("%49s", customers[customerCount].name);
 
     printf("Enter Customer Phone No (eg: 07########) : ");
-    scanf("%s", customers[customerCount].phone);
+    scanf("%14s", customers[customerCount].phone);
 
     printf("Create a Password (less than 20 characters) : ");
-    scanf("%s", customers[customerCount].password);
+    scanf("%19s", customers[customerCount].password);
 
     if (strlen(customers[customerCount].phone) == 10 && strlen(customers[customerCount].password) > 0 && strlen(customers[customerCount].password) < 20) {
 
@@ -201,6 +201,7 @@ int customerLogin() {
     } else {
         printf("Invalid Login Details!\n");
     }
+    return -1;
 }
 
 void updateCustomer() {

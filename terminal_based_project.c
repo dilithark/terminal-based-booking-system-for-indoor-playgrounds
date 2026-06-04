@@ -319,6 +319,7 @@ void adminLogin() {
         printf(" 6. Booking Statistics\n");
         printf(" 7. Monthly Report\n");
         printf(" 8. System Summary\n");
+        
         printf(" 9. Add Court\n");         
         printf("10. Update Court Status\n");
         printf("11. Add Equipment\n");

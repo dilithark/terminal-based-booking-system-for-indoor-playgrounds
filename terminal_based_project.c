@@ -610,6 +610,8 @@ void updateCourt() {
 // BOOKING FUNCTIONS
 // ============================
 
+
+
 int checkAvailability(int courtNo, char date[], int timeSlot) {
     int i;
     for (i = 0; i < bookingCount; i++) {
@@ -640,6 +642,11 @@ void createBooking() {
 
     if (courtNo < 1 || courtNo > courtCount) {  
         printf("Invalid Court Number!\n");
+        return;
+    }
+
+    else if (strcmp(courts[courtNo - 1].status, "Maintenance") == 0) {
+        printf("Court is under maintenance!\n");
         return;
     }
 

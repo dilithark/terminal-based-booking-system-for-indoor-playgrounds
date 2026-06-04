@@ -645,7 +645,7 @@ void createBooking() {
         return;
     }
 
-    else if (strcmp(courts[courtNo - 1].status, "Maintenance") == 0) {
+    if (strcmp(courts[courtNo - 1].status, "Maintenance") == 0) {
         printf("Court is under maintenance!\n");
         return;
     }

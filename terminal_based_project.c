@@ -234,7 +234,7 @@ void updateCustomer() {
 }
 
 void displayCustomers() {
-    int i;
+    struct Customer *ptr;
     printf("\n--- Customer List ---\n");
 
     if (customerCount == 0) {
@@ -242,11 +242,11 @@ void displayCustomers() {
         return;
     }
 
-    for (i = 0; i < customerCount; i++) {
+    for (ptr = customers; ptr < customers + customerCount; ptr++) {
         printf("ID: %d  Name: %s  Phone: %s\n",
-               customers[i].customerID,
-               customers[i].name,
-               customers[i].phone);
+               ptr->customerID,
+               ptr->name,
+               ptr->phone);
     }
 }
 
@@ -676,6 +676,22 @@ void createBooking() {
 
         bookingCount++;
         printf("Booking Successful! Booking ID: %d\n", bookingCount - 1 + 1000);
+        printf("\n");
+        printf("╔══════════════════════════════════════╗\n");
+        printf("║         BOOKING RECEIPT              ║\n");
+        printf("║    Indoor Badminton Court System     ║\n");
+        printf("╠══════════════════════════════════════╣\n");
+        printf("║  Booking ID   : %-20d║\n", bookings[bookingCount - 1].bookingID);
+        printf("║  Customer ID  : %-20d║\n", customerID);
+        printf("╠══════════════════════════════════════╣\n");
+        printf("║  Court No     : %-20d║\n", courtNo);
+        printf("║  Court Name   : %-20s║\n", courts[courtNo - 1].courtName);
+        printf("║  Date         : %-20s║\n", date);
+        printf("║  Time Slot    : %-20s║\n", timeSlot);
+        printf("╠══════════════════════════════════════╣\n");
+        printf("║  Status       : CONFIRMED            ║\n");
+        printf("╚══════════════════════════════════════╝\n");
+
     } else {
         printf("Court already booked for that date and time slot!\n");
     }

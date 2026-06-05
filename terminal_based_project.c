@@ -371,8 +371,6 @@ void adminLogin() {
 
 void dailyReport() {
     printf("\n========== DAILY REPORT ==========\n");
-
-    printf("Total Customers       : %d\n", customerCount);
     printf("Total Bookings        : %d\n", bookingCount);
     printf("Total Equipment Types : %d\n", equipmentCount);
     printf("\n--- Available Slots ---\n");
@@ -443,6 +441,26 @@ void bookingStatistics() {
     printf("10AM - 11AM : %d bookings\n", slot3);
     printf("11AM - 12PM : %d bookings\n", slot4);
 
+    int maxCount = slot1;
+    int maxSlot = 1;
+
+    if (slot2 > maxCount) {
+        maxCount = slot2;
+        maxSlot = 2;
+    }
+
+    if (slot3 > maxCount) {
+        maxCount = slot3;
+        maxSlot = 3;
+    }
+
+    if (slot4 > maxCount) {
+        maxCount = slot4;
+        maxSlot = 4;
+    }
+
+printf("Most Booked Time Slot: Slot %d (%d bookings)\n", maxSlot, maxCount);
+
     if (court1Count > court2Count)
         printf("\nMost Popular Court : Court 1\n");
 
@@ -489,6 +507,8 @@ void monthlyReport() {
 
     else
         printf("\nBoth Courts Are Equally Popular\n");
+
+    
 }
 
 // ============================
@@ -562,13 +582,13 @@ void addCourt() {
         return;
     }
 
-    printf("Enter Court Number : ");
+    printf("Enter Court Number : \n");
     scanf("%d", &courts[courtCount].courtNo);
 
-    printf("Enter Court Name   : ");
+    printf("Enter Court Name   : \n");
     scanf("%s", courts[courtCount].courtName);
 
-    printf("Enter Court Status : ");
+    printf("Enter Court Status : \n");
     scanf("%s", courts[courtCount].status);
 
     courtCount++;
@@ -635,7 +655,7 @@ void createBooking() {
     }
 
     printf("\n--- Create New Booking ---\n");
-    printf("Enter Customer ID          : ");
+    printf("Enter Customer ID          : \n");
     scanf("%d", &customerID);
 
     printf("Enter Court Number (1-%d)  : ", courtCount);
@@ -651,10 +671,10 @@ void createBooking() {
         return;
     }
 
-    printf("Enter Booking Date (YYYY-MM-DD) : ");
+    printf("Enter Booking Date (YYYY-MM-DD) : \n");
     scanf("%s", date);
 
-    printf("\nTime Slots:\n");
+    printf("\nTime Slots: LKR 500.00 \n");
     printf("1. 8AM  - 9AM\n");
     printf("2. 9AM  - 10AM\n");
     printf("3. 10AM - 11AM\n");
